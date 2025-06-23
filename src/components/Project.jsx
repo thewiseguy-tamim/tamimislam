@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import DecryptedText from '../../reactbits/DecryptedText/DecryptedText';
+import Project1 from '../assets/project1.png'; 
+import Project2 from '../assets/Project2.png'
 
 const Projects = () => {
   return (
@@ -37,7 +39,7 @@ const Projects = () => {
         >
           <div className="rounded-lg overflow-hidden">
             <img 
-              src="/src/assets/project1.png" 
+              src={Project1}
               alt="Project Screenshot" 
               className="w-full h-[300px] md:h-[400px] object-cover mt-3 rounded-3xl" 
             />
@@ -145,7 +147,7 @@ const Projects = () => {
         >
           <div className="rounded-lg overflow-hidden">
             <img 
-              src="/src/assets/Project2.png" 
+              src={Project2} 
               alt="Project Screenshot" 
               className="w-full h-[300px] md:h-[420px] object-cover rounded-3xl" 
             />

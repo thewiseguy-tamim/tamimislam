@@ -1,0 +1,17 @@
+/* .squares-canvas {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+} */
+/* Squares.css */
+.squares-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none; /* Allows mouse events to pass through */
+  background-color: black;
+}

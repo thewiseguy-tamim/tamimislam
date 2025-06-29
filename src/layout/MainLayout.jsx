@@ -20,7 +20,10 @@ const MainLayout = () => {
   const navItems = [
     { name: "Home", link: "#Home" },
     { name: "Projects", link: "#Projects" },
+    { name: "Education", link: "#Education" },
+    { name: "Blog", link: "#Blog" },
     { name: "Skills", link: "#Skills" },
+    
     { name: "Contact", link: "#Contact" },
   ]
 
@@ -153,7 +156,7 @@ const MainLayout = () => {
           <NavbarLogo />
           <NavItems items={navItems} onItemClick={handleNavItemClick} activeSection={activeSection} />
           <NavbarButton variant="primary" onClick={() => handleNavItemClick("#Contact")}>
-            Hire me
+            Get in touch
           </NavbarButton>
         </NavBody>
 

@@ -23,7 +23,6 @@ const MainLayout = () => {
     { name: "Education", link: "#Education" },
     { name: "Blog", link: "#Blog" },
     { name: "Skills", link: "#Skills" },
-    
     { name: "Contact", link: "#Contact" },
   ]
 
@@ -34,7 +33,6 @@ const MainLayout = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Dark mode setup
     const savedTheme = localStorage.getItem("theme")
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
 
@@ -48,12 +46,10 @@ const MainLayout = () => {
   }, [])
 
   useEffect(() => {
-    // Close mobile menu when route changes
     setIsMobileMenuOpen(false)
   }, [location.pathname])
 
   useEffect(() => {
-    // Only set up intersection observer on home page
     if (location.pathname === "/" || location.pathname === "/home") {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -73,20 +69,15 @@ const MainLayout = () => {
           root: null,
           rootMargin: "-10% 0px -70% 0px",
           threshold: [0.1, 0.3, 0.5],
-        },
+        }
       )
 
       const setupObserver = () => {
         const sections = document.querySelectorAll("section[id]")
         if (sections.length > 0) {
           sections.forEach((section) => observer.observe(section))
-
           const currentHash = window.location.hash.replace("#", "")
-          if (currentHash) {
-            setActiveSection(currentHash)
-          } else {
-            setActiveSection("Home")
-          }
+          setActiveSection(currentHash || "Home")
         }
       }
 
@@ -94,9 +85,7 @@ const MainLayout = () => {
 
       const handleHashChange = () => {
         const hash = window.location.hash.replace("#", "")
-        if (hash) {
-          scrollToSection(hash)
-        }
+        if (hash) scrollToSection(hash)
       }
 
       window.addEventListener("hashchange", handleHashChange)
@@ -116,8 +105,7 @@ const MainLayout = () => {
       setTimeout(() => {
         const element = document.getElementById(sectionId)
         if (element) {
-          const offset = 80 // Account for fixed navbar
-          const elementPosition = element.offsetTop - offset
+          const elementPosition = element.offsetTop - 80
           window.scrollTo({
             top: elementPosition,
             behavior: "smooth",
@@ -128,8 +116,7 @@ const MainLayout = () => {
     } else {
       const element = document.getElementById(sectionId)
       if (element) {
-        const offset = 80 // Account for fixed navbar
-        const elementPosition = element.offsetTop - offset
+        const elementPosition = element.offsetTop - 80
         window.scrollTo({
           top: elementPosition,
           behavior: "smooth",
@@ -142,25 +129,28 @@ const MainLayout = () => {
   }
 
   const handleNavItemClick = (link) => {
-    const sectionId = link.replace("#", "")
-    scrollToSection(sectionId)
+    scrollToSection(link.replace("#", ""))
   }
 
   return (
-    <div className="relative w-full">
-      <Squares direction="diagonal" speed={0.5} borderColor="#19191A" squareSize={40} hoverFillColor="#222" />
+    <div className="relative w-full overflow-x-hidden min-h-screen">
+      <Squares 
+        direction="diagonal" 
+        speed={0.5} 
+        borderColor="#19191A" 
+        squareSize={40} 
+        hoverFillColor="#222" 
+      />
 
-      <Navbar>
-        {/* Desktop Navigation */}
+      <Navbar className="fixed top-0 left-0 right-0 z-50">
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} onItemClick={handleNavItemClick} activeSection={activeSection} />
-          <NavbarButton variant="primary" onClick={() => handleNavItemClick("#Contact")}>
+          <NavbarButton variant="primary" onClick={() => handleNavItemClick("#Contact")}> 
             Get in touch
           </NavbarButton>
         </NavBody>
 
-        {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
@@ -177,7 +167,7 @@ const MainLayout = () => {
                     "w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-200",
                     activeSection === item.link.replace("#", "")
                       ? "bg-black text-white dark:bg-white dark:text-black"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800",
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                   )}
                 >
                   {item.name}
@@ -201,10 +191,9 @@ const MainLayout = () => {
         </MobileNav>
       </Navbar>
 
-      {/* Main content with proper top padding */}
-      <div className="pt-16 lg:pt-0">
+      <div className="pt-16 md:pt-20 lg:pt-24 w-full max-w-full overflow-x-hidden">
         <Outlet />
-        <Footer/>
+        <Footer />
       </div>
     </div>
   )

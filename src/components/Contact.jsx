@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Twitter, Linkedin, Instagram, Dribbble } from 'lucide-react';
+import { Linkedin, Instagram } from 'lucide-react';
 import ShinyText from '../../reactbits/ShinyText/ShinyText';
 
 // EmailJS configuration
@@ -25,7 +25,6 @@ const Contact = () => {
       [name]: value
     }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -36,39 +35,24 @@ const Contact = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-    
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-    
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Please enter a valid email';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      // Initialize EmailJS if not already done
       if (typeof window !== 'undefined' && window.emailjs) {
-        // EmailJS is loaded via CDN
         const result = await window.emailjs.send(
           EMAILJS_SERVICE_ID,
           EMAILJS_TEMPLATE_ID,
@@ -76,7 +60,7 @@ const Contact = () => {
             from_name: formData.name,
             from_email: formData.email,
             message: formData.message,
-            to_name: 'Tamim', // You can customize this
+            to_name: 'Tamim',
           },
           EMAILJS_PUBLIC_KEY
         );
@@ -88,13 +72,12 @@ const Contact = () => {
           throw new Error('Failed to send email');
         }
       } else {
-        // Fallback: Load EmailJS dynamically
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
         script.onload = async () => {
           window.emailjs.init(EMAILJS_PUBLIC_KEY);
           const result = await window.emailjs.send(
-            EMAILJS_TEMPLATE_ID,
+            EMAILJS_SERVICE_ID, // FIX: use service ID here
             EMAILJS_TEMPLATE_ID,
             {
               from_name: formData.name,
@@ -114,13 +97,10 @@ const Contact = () => {
         document.head.appendChild(script);
       }
       
-      // Clear success message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
-      
     } catch (error) {
       console.error('EmailJS Error:', error);
       setSubmitStatus('error');
-      // Clear error message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
     } finally {
       setIsSubmitting(false);
@@ -132,16 +112,17 @@ const Contact = () => {
       {/* Load EmailJS from CDN */}
       <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
       
-      <div className="min-h-screen bg-black text-white flex items-center justify-center pl-90 mt-50">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center lg:pl-90 lg:mt-50 px-4 sm:px-6">
         <div className="w-full h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-start min-h-screen">
+          {/* Only apply the negative margin on desktop to avoid mobile overlap */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 items-start lg:min-h-screen mt-0 lg:mt-[-200px]">
             {/* Left Section - Form */}
-            <div className="mt-30 space-y-12 p-6 md:p-16 flex flex-col justify-center min-h-screen">
+            <div className="mt-10 lg:mt-30 space-y-10 md:space-y-12 p-4 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center">
               <div>
-                <h1 className="text-6xl md:text-7xl font-light mb-8 leading-tight">
-                  <ShinyText text="Contact Me" disabled={false} speed={3} className='custom-class' />
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6 md:mb-8 leading-tight">
+                  <ShinyText text="Contact Me" disabled={false} speed={3} className="custom-class" />
                 </h1>
-                <p className="text-gray-300 text-xl leading-relaxed">
+                <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed">
                   Please feel free to contact me and I<br />
                   will get back to you as soon as we can.
                 </p>
@@ -160,8 +141,8 @@ const Contact = () => {
                 </div>
               )}
 
-              <div className="space-y-10">
-                <div className="space-y-8">
+              <div className="space-y-8 md:space-y-10">
+                <div className="space-y-6 md:space-y-8">
                   {/* Name Field */}
                   <div>
                     <input
@@ -172,7 +153,7 @@ const Contact = () => {
                       placeholder="Name"
                       className={`w-full bg-transparent border-b-2 ${
                         errors.name ? 'border-red-500' : 'border-gray-600'
-                      } focus:border-white outline-none py-4 text-xl placeholder-gray-400 transition-colors duration-300`}
+                      } focus:border-white outline-none py-3 md:py-4 text-base md:text-lg lg:text-xl placeholder-gray-400 transition-colors duration-300`}
                     />
                     {errors.name && (
                       <p className="text-red-400 text-sm mt-2">{errors.name}</p>
@@ -189,7 +170,7 @@ const Contact = () => {
                       placeholder="Email"
                       className={`w-full bg-transparent border-b-2 ${
                         errors.email ? 'border-red-500' : 'border-gray-600'
-                      } focus:border-white outline-none py-4 text-xl placeholder-gray-400 transition-colors duration-300`}
+                      } focus:border-white outline-none py-3 md:py-4 text-base md:text-lg lg:text-xl placeholder-gray-400 transition-colors duration-300`}
                     />
                     {errors.email && (
                       <p className="text-red-400 text-sm mt-2">{errors.email}</p>
@@ -206,7 +187,7 @@ const Contact = () => {
                       rows="1"
                       className={`w-full bg-transparent border-b-2 ${
                         errors.message ? 'border-red-500' : 'border-gray-600'
-                      } focus:border-white outline-none py-4 text-xl placeholder-gray-400 resize-none transition-colors duration-300`}
+                      } focus:border-white outline-none py-3 md:py-4 text-base md:text-lg lg:text-xl placeholder-gray-400 resize-none transition-colors duration-300`}
                     />
                     {errors.message && (
                       <p className="text-red-400 text-sm mt-2">{errors.message}</p>
@@ -218,7 +199,7 @@ const Contact = () => {
                 <button
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="w-full bg-gray-600 hover:bg-gray-500 disabled:bg-gray-700 text-white font-medium py-5 px-8 text-lg transition-colors duration-300 disabled:cursor-not-allowed"
+                  className="w-full bg-gray-600 hover:bg-gray-500 disabled:bg-gray-700 text-white font-medium py-4 md:py-5 px-6 md:px-8 text-base md:text-lg transition-colors duration-300 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send'}
                 </button>
@@ -226,20 +207,19 @@ const Contact = () => {
             </div>
 
             {/* Right Section - Contact Info */}
-            <div className="mt-57 space-y-16 p-6 md:p-16 flex flex-col justify-center min-h-screen ">
+            <div className="mt-12 lg:mt-57 space-y-10 md:space-y-16 p-4 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center">
               {/* Visit Us */}
               <div>
-                <h3 className="text-4xl font-medium mb-6">Location</h3>
-                <div className="text-gray-300 text-lg space-y-2">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium mb-4 md:mb-6">Location</h3>
+                <div className="text-gray-300 text-base sm:text-lg space-y-2">
                   <p>Dhaka, Bangladesh</p>
-                  {/* <p>Strathfield South 2136</p> */}
                 </div>
               </div>
 
               {/* Talk to Us */}
               <div>
-                <h3 className="text-4xl font-medium mb-6 ">Get in touch</h3>
-                <div className="text-gray-300 text-lg space-y-2">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium mb-4 md:mb-6">Get in touch</h3>
+                <div className="text-gray-300 text-base sm:text-lg space-y-2">
                   <p>+8801823507219</p>
                   <p>nottamimislam@gmail.com</p>
                 </div>
@@ -247,22 +227,20 @@ const Contact = () => {
 
               {/* Social Media Icons */}
               <div className="flex space-x-6 pt-4">
-<a 
-  href="https://www.linkedin.com/in/nottamimislam/"
-  className="text-gray-400 hover:text-white transition-colors duration-300"
-  aria-label="LinkedIn"
->
-  <Linkedin size={28} />
-</a>
-<a 
-  href="https://www.instagram.com/tamim_accidentally_/"
-  className="text-gray-400 hover:text-white transition-colors duration-300"
-  aria-label="Instagram"
->
-  <Instagram size={28} />
-</a>
-
-
+                <a 
+                  href="https://www.linkedin.com/in/nottamimislam/"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={28} />
+                </a>
+                <a 
+                  href="https://www.instagram.com/tamim_accidentally_/"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={28} />
+                </a>
               </div>
             </div>
           </div>

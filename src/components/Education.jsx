@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Education = () => {
   return (
-    <section id="Education" className="w-full">
+    <section id="Education" className="w-full mt-[-20px]">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div 

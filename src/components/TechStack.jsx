@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const TechStack = () => {
@@ -20,52 +20,68 @@ const TechStack = () => {
   const { scrollYProgress } = useScroll();
   const gridScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.1, 1]);
 
+  // Disable scaling on small screens to prevent overlap
+  const [isMd, setIsMd] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsMd(mq.matches);
+    update();
+    if (mq.addEventListener) mq.addEventListener('change', update);
+    else mq.addListener(update);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', update);
+      else mq.removeListener(update);
+    };
+  }, []);
+
   useEffect(() => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css';
     document.head.appendChild(link);
-    
     return () => {
       document.head.removeChild(link);
     };
   }, []);
 
   return (
-    <section className="py-20 px-8 ">
+    <section className="py-8 px-8 relative z-0">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-white-100 to-gray-100 bg-clip-text text-transparent">
           Tech and Skills
         </h2>
 
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-          style={{ scale: gridScale }}
-        >
-          {techStack.map((tech, index) => (
-            <motion.div
-              key={index}
-              className=" rounded-xl p-6 flex flex-col items-center justify-center hover:bg-[#252525] transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.5,
-                  delay: index * 0.1
-                }
-              }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-            >
-              <i 
-                className={`devicon-${tech.icon} text-5xl mb-4`}
-                style={{ color: tech.color }}
-              />
-              <span className="text-gray-200 text-lg font-medium">{tech.name}</span>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Extra bottom padding so the scale has room on mobile too */}
+        <div className="pb-28 md:pb-24 lg:pb-16">
+          <motion.div
+            className="grid grid-cols-3 lg:grid-cols-4 gap-6 origin-top md:origin-center"
+            style={{ scale: isMd ? gridScale : 1 }}
+          >
+            {techStack.map((tech, index) => (
+              <motion.div
+                key={index}
+                className="rounded-xl p-6 flex flex-col items-center justify-center hover:bg-[#252525] transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.5,
+                    delay: index * 0.1
+                  }
+                }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <i
+                  className={`devicon-${tech.icon} text-5xl mb-4`}
+                  style={{ color: tech.color }}
+                />
+                <span className="text-gray-200 text-lg font-medium">{tech.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -5,10 +5,8 @@ import Hero from "../components/hero"
 import Projects from "../components/Project"
 import TechStack from "../components/TechStack"
 import Contact from "../components/Contact"
-import Teke from "../components/Teke"
 import Education from "../components/Education"
 import Blog from "../components/Blog"
-
 
 const Home = () => {
   useEffect(() => {
@@ -36,18 +34,20 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="Projects" className="min-h-screen ">
+      <section id="Projects" className="min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <Projects />
         </div>
       </section>
-      <section id="Projects" className="min-h-screen ">
+
+      {/* FIX: unique ID instead of a second "Projects" */}
+      <section id="Education" className="min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <Education />
         </div>
       </section>
 
-      <section id="Blog" className="min-h-screen">
+      <section id="Blog" className="">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <Blog />
         </div>
@@ -59,15 +59,14 @@ const Home = () => {
         </div>
       </section>
 
-      
-
-      
-      <section id="Contact" className="min-h-screen ">
+      <section id="Contact" className="min-h-screen">
+        {/* Mobile: no negative margin. Desktop: keep the original pull-up. Also ensure it paints above. */}
+        <div className="mt-0 lg:mt-[-200px] relative z-10">
           <Contact />
+        </div>
       </section>
     </div>
   )
 }
 
 export default Home
-

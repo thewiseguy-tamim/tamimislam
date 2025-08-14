@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Calendar, Tag, ExternalLink, Github } from 'lucide-react';
 import Project1 from '../assets/project1.png';
 import Project2 from '../assets/Project2.png';
-import Project3 from '../assets/project3.png'; // Assuming a placeholder image for the new project
+import Project3 from '../assets/project3.png'; // Replace with your PetNest image import
 
 // Mock DecryptedText component
 const DecryptedText = ({ text, animateOn, revealDirection }) => {
@@ -14,6 +14,26 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projectsData = {
+    petnest: {
+      id: 3,
+      title: "PetNest",
+      image: Project3, // Replace with your PetNest image import
+      shortDescription: "A full-stack pet marketplace platform for browsing, posting, and adopting/buying pets with secure payments and in-app messaging.",
+      fullDescription: "PetNest is a comprehensive web application designed to connect pet adopters, sellers, and animal lovers in one trusted platform. Users can browse pets with advanced filters, create and manage listings, communicate via a built-in messaging system, and complete secure online payments through SSLCommerz.\n\nThe platform includes user verification to ensure trust and safety, along with role-based dashboards for users, moderators, and admins to manage listings, verifications, and platform activity. PetNest delivers a responsive, mobile-friendly experience optimized for all devices.\n\nBuilt with a modern tech stack, PetNest offers a seamless, secure, and user-friendly interface for anyone looking to adopt or buy pets online.",
+      date: "August 2025",
+      category: "Full-Stack Web Application",
+      status: "Live",
+      technologies: ['React', 'Tailwind CSS', 'Vite', 'Django REST Framework', 'PostgreSQL', 'JWT Authentication', 'Cloudinary', 'SSLCommerz'],
+      liveUrl: "https://petnest-eta.vercel.app/",
+      githubUrl: "https://github.com/thewiseguy-tamim/petnest-frontend", // Or backend repo if needed
+      features: [
+        'Browse pets using advanced filters (type, breed, adoption/sale status)',
+        'Create listings with image uploads and manage them via a personal dashboard',
+        'Communicate directly with other users via a built-in messaging system',
+        'Complete secure online payments with SSLCommerz integration',
+        'Build trust with user verification and role-based moderation'
+      ]
+    },
     homesnap: {
       id: 1,
       title: "HomeSnap",
@@ -50,25 +70,6 @@ const Projects = () => {
         'Secure authentication and role-based access',
         'Monitor upcoming and past events through intuitive dashboards'
       ]
-    },
-    cocktailhub: {
-      id: 3,
-      title: "CocktailHub",
-      image: Project3,
-      shortDescription: "A dynamic cocktail discovery platform that fetches drink recipes via API, allowing users to explore details and save favorites to a personalized list.",
-      fullDescription: "CocktailHub is an engaging web application designed for cocktail enthusiasts to discover, explore, and save drink recipes. Powered by an external API, the platform fetches a vast collection of cocktail recipes, enabling users to browse detailed information such as ingredients, preparation instructions, and serving suggestions.\n\nUsers can add their favorite cocktails to a personalized list, making it easy to revisit recipes for future occasions. The platform features a sleek, user-friendly interface with search and filter functionalities to find drinks by category, ingredient, or name.\n\nBuilt with modern front-end technologies, CocktailHub ensures a responsive and interactive experience across all devices, making it the perfect companion for both casual users and mixology enthusiasts.",
-      date: "June 2024",
-      category: "API-Driven Web Application",
-      status: "Live",
-      technologies: ['HTML', 'CSS', 'REST API', 'JavaScript'],
-      liveUrl: "https://cocktails-psi-blue.vercel.app/",
-      githubUrl: "https://github.com/thewiseguy-tamim/project-2",
-      features: [
-        'Fetch and display cocktail recipes using an external API',
-        'View detailed recipe information including ingredients and instructions',
-        'Add cocktails to a personalized favorites list',
-        'Search and filter cocktails by category, ingredient, or name'
-      ]
     }
   };
 
@@ -83,56 +84,151 @@ const Projects = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 mb-2 py-8 bg-black min-h-screen"> 
-      <motion.h2 
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-2 py-8 bg-transparent min-h-screen mt-[-140px]">
+      <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }} 
-        className="text-5xl font-bold text-center text-white"
+        viewport={{ once: true }}
+        className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white"
       >
-        <DecryptedText
-          text="Featured Projects"
-          animateOn="view"
-          revealDirection="center"
-        />
+        <DecryptedText text="Featured Projects" animateOn="view" revealDirection="center" />
       </motion.h2>
-      
-      <motion.div 
+
+      <motion.div
         initial={{ opacity: 0, scaleX: 0 }}
         whileInView={{ opacity: 1, scaleX: 1 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }} 
-        className="border-t border-gray-300 my-4 mb-20 w-[42rem] mx-auto md:w-[30rem] sm:w-full" 
+        viewport={{ once: true }}
+        className="border-t border-gray-300/40 my-4 mb-12 sm:mb-20 w-full max-w-5xl mx-auto"
       />
 
-      {/* HomeSnap Project */}
-      <div className="flex flex-col md:flex-row gap-10 items-start">
-        <motion.div 
+      {/* PetNest Project (placed first) */}
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-10 items-start">
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }} 
+          viewport={{ once: true }}
           className="w-full md:w-1/2"
         >
-          <div className="rounded-lg overflow-hidden">
-            <img 
-              src={Project1}
-              alt="HomeSnap Screenshot" 
-              className="w-full h-[300px] md:h-[400px] object-cover mt-3 rounded-3xl" 
+          <div className="relative rounded-3xl overflow-hidden aspect-[16/10] md:aspect-[16/9]">
+            <img
+              src={Project3}
+              alt="PetNest Screenshot"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }} 
+          viewport={{ once: true }}
           className="w-full md:w-1/2 text-white"
         >
           <div className="flex items-center gap-2 mb-4">
-            <a href="https://home-snapx.vercel.app/"><span className="text-4xl font-bold">HomeSnap</span></a>
+            <a href={projectsData.petnest.liveUrl} target="_blank" rel="noopener noreferrer">
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold">PetNest</span>
+            </a>
+          </div>
+
+          <p className="text-gray-300 mb-6">
+            {projectsData.petnest.shortDescription}
+          </p>
+
+          <ul className="space-y-3 mb-8">
+            {projectsData.petnest.features.map((feature, index) => (
+              <li key={index} className="flex items-start gap-2">
+                <span className="text-yellow-500">★</span>
+                <span className="text-gray-300">{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-wrap gap-3 mb-8">
+            {projectsData.petnest.technologies.map((tech) => (
+              <button
+                key={tech}
+                className="px-4 py-2 rounded-md border border-gray-600 text-sm text-gray-300 hover:bg-white/5 transition-colors"
+              >
+                {tech}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-4 mb-4">
+            <a
+              href={projectsData.petnest.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group px-6 py-2 rounded-md bg-white text-black border hover: transition-all duration-300 flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
+                Live Demo
+              </span>
+            </a>
+
+            <a
+              href={projectsData.petnest.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group px-6 py-2 rounded-md bg-transparent text-white border border-[#363636] hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span className="group-hover:translate-x-1 transition-transform duration-300">
+                View Code
+              </span>
+            </a>
+
+            <button
+              onClick={() => openModal(projectsData.petnest)}
+              className="group px-6 py-2 rounded-md bg-white text-black border hover: transition-all duration-300 flex items-center gap-2"
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
+                View Details
+              </span>
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* HomeSnap Project */}
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-10 items-start mt-16 lg:mt-20">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="w-full md:w-1/2"
+        >
+          <div className="relative rounded-3xl overflow-hidden aspect-[16/10] md:aspect-[16/9]">
+            <img
+              src={Project1}
+              alt="HomeSnap Screenshot"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="w-full md:w-1/2 text-white"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <a href="https://home-snapx.vercel.app/" target="_blank" rel="noopener noreferrer">
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold">HomeSnap</span>
+            </a>
           </div>
 
           <p className="text-gray-300 mb-6">
@@ -152,35 +248,22 @@ const Projects = () => {
             {projectsData.homesnap.technologies.map((tech) => (
               <button
                 key={tech}
-                className="px-4 py-2 rounded-md border border-gray-600 text-sm text-gray-300 
-                         hover:bg-gray-800 transition-colors"
+                className="px-4 py-2 rounded-md border border-gray-600 text-sm text-gray-300 hover:bg-white/5 transition-colors"
               >
                 {tech}
               </button>
             ))}
           </div>
 
-          <div className="flex gap-4 mb-4">
+          <div className="flex flex-wrap gap-4 mb-4">
             <a
               href="https://home-snapx.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group px-6 py-2 rounded-md bg-white text-black border  
-                       hover: transition-all duration-300 flex items-center gap-2"
+              className="group px-6 py-2 rounded-md bg-white text-black border hover: transition-all duration-300 flex items-center gap-2"
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                className="w-4 h-4"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
               <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
                 Live Demo
@@ -191,15 +274,9 @@ const Projects = () => {
               href="https://github.com/thewiseguy-tamim/HomeSnapx"
               target="_blank"
               rel="noopener noreferrer"
-              className="group px-6 py-2 rounded-md bg-black text-white border border-[#363636] 
-                       hover:bg-[#2a2a2a] transition-all duration-300 flex items-center gap-2"
+              className="group px-6 py-2 rounded-md bg-transparent text-white border border-[#363636] hover:bg:white/5 hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="currentColor" 
-                className="w-4 h-4"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
               <span className="group-hover:translate-x-1 transition-transform duration-300">
@@ -209,8 +286,7 @@ const Projects = () => {
 
             <button
               onClick={() => openModal(projectsData.homesnap)}
-              className="group px-6 py-2 rounded-md bg-white text-black border 
-                       hover: transition-all duration-300 flex items-center gap-2"
+              className="group px-6 py-2 rounded-md bg-white text-black border hover: transition-all duration-300 flex items-center gap-2"
             >
               <ExternalLink className="w-4 h-4" />
               <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
@@ -222,33 +298,33 @@ const Projects = () => {
       </div>
 
       {/* EventPro Project */}
-      <div className="flex flex-col md:flex-row gap-10 items-start mt-20">
-        <motion.div 
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-10 items-start mt-16 lg:mt-20">
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }} 
+          viewport={{ once: true }}
           className="w-full md:w-1/2"
         >
-          <div className="rounded-lg overflow-hidden">
-            <img 
-              src={Project2} 
-              alt="EventPro Screenshot" 
-              className="w-full h-[300px] md:h-[420px] object-cover rounded-3xl" 
+          <div className="relative rounded-3xl overflow-hidden aspect-[16/10] md:aspect-[16/9]">
+            <img
+              src={Project2}
+              alt="EventPro Screenshot"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }} 
+          viewport={{ once: true }}
           className="w-full md:w-1/2 text-white"
         >
           <div className="flex items-center gap-2 mb-4">
             <a href="https://eventpro-4059.onrender.com/" target="_blank" rel="noopener noreferrer">
-              <span className="text-4xl font-bold">Eventpro</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold">Eventpro</span>
             </a>
           </div>
 
@@ -269,35 +345,22 @@ const Projects = () => {
             {projectsData.eventpro.technologies.map((tech) => (
               <button
                 key={tech}
-                className="px-4 py-2 rounded-md border border-gray-600 text-sm text-gray-300 
-                         hover:bg-gray-800 transition-colors"
+                className="px-4 py-2 rounded-md border border-gray-600 text-sm text-gray-300 hover:bg-white/5 transition-colors"
               >
                 {tech}
               </button>
             ))}
           </div>
 
-          <div className="flex gap-4 mb-4">
+          <div className="flex flex-wrap gap-4 mb-4">
             <a
               href="https://eventpro-4059.onrender.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group px-6 py-2 rounded-md bg-white text-black border  
-                       hover: transition-all duration-300 flex items-center gap-2"
+              className="group px-6 py-2 rounded-md bg-white text-black border hover: transition-all duration-300 flex items-center gap-2"
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                className="w-4 h-4"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
               <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
                 Live Demo
@@ -308,15 +371,9 @@ const Projects = () => {
               href="https://github.com/thewiseguy-tamim/eventpro"
               target="_blank"
               rel="noopener noreferrer"
-              className="group px-6 py-2 rounded-md bg-black text-white border border-[#363636] 
-                       hover:bg-[#2a2a2a] transition-all duration-300 flex items-center gap-2"
+              className="group px-6 py-2 rounded-md bg-transparent text-white border border-[#363636] hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="currentColor" 
-                className="w-4 h-4"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
               <span className="group-hover:translate-x-1 transition-transform duration-300">
@@ -326,125 +383,7 @@ const Projects = () => {
 
             <button
               onClick={() => openModal(projectsData.eventpro)}
-              className="group px-6 py-2 rounded-md bg-white text-black border 
-                       hover: transition-all duration-300 flex items-center gap-2"
-            >
-              <ExternalLink className="w-4 h-4" />
-              <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
-                View Details
-              </span>
-            </button>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* CocktailHub Project */}
-      <div className="flex flex-col md:flex-row gap-10 items-start mt-20">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }} 
-          className="w-full md:w-1/2"
-        >
-          <div className="rounded-lg overflow-hidden">
-            <img 
-              src={Project3} 
-              alt="CocktailHub Screenshot" 
-              className="w-full h-[300px] md:h-[420px] object-cover rounded-3xl" 
-            />
-          </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }} 
-          className="w-full md:w-1/2 text-white"
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <a href="https://cocktails-psi-blue.vercel.app/" target="_blank" rel="noopener noreferrer">
-              <span className="text-4xl font-bold">CocktailHub</span>
-            </a>
-          </div>
-
-          <p className="text-gray-300 mb-6 text-lg font-bold" style={{ fontFamily: "'Inter', sans-serif" }}>
-            {projectsData.cocktailhub.shortDescription}
-          </p>
-
-          <ul className="space-y-3 mb-8">
-            {projectsData.cocktailhub.features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-yellow-500">★</span>
-                <span className="text-gray-300">{feature}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex flex-wrap gap-3 mb-8">
-            {projectsData.cocktailhub.technologies.map((tech) => (
-              <button
-                key={tech}
-                className="px-4 py-2 rounded-md border border-gray-600 text-sm text-gray-300 
-                         hover:bg-gray-800 transition-colors"
-              >
-                {tech}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex gap-4 mb-4">
-            <a
-              href="https://cocktails-psi-blue.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group px-6 py-2 rounded-md bg-white text-black border  
-                       hover: transition-all duration-300 flex items-center gap-2"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                className="w-4 h-4"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-                />
-              </svg>
-              <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
-                Live Demo
-              </span>
-            </a>
-
-            <a
-              href="https://github.com/thewiseguy-tamim/project-2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group px-6 py-2 rounded-md bg-black text-white border border-[#363636] 
-                       hover:bg-[#2a2a2a] transition-all duration-300 flex items-center gap-2"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="currentColor" 
-                className="w-4 h-4"
-              >
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              <span className="group-hover:translate-x-1 transition-transform duration-300">
-                View Code
-              </span>
-            </a>
-
-            <button
-              onClick={() => openModal(projectsData.cocktailhub)}
-              className="group px-6 py-2 rounded-md bg-white text-black border 
-                       hover: transition-all duration-300 flex items-center gap-2"
+              className="group px-6 py-2 rounded-md bg-white text-black border hover: transition-all duration-300 flex items-center gap-2"
             >
               <ExternalLink className="w-4 h-4" />
               <span className="group-hover:translate-x-1 transition-transform duration-300 font-bold">
@@ -463,7 +402,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black bg-opacity-90 backdrop-blur-sm z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center"
             onClick={closeModal}
           >
             <motion.div
@@ -471,29 +410,27 @@ const Projects = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
-              className="bg-black shadow-2xl w-full h-full overflow-hidden border border-gray-700"
+              className="bg-transparent shadow-2xl w-full h-full overflow-hidden border border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-700 bg-gradient-to-r from-[#0f0f0f] to-[#1a1a1a]">
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10 bg-transparent">
                 <div className="flex items-center gap-3">
                   <button
                     onClick={closeModal}
-                    className="p-2 hover:bg-gray-700 rounded-lg transition-colors duration-200 
-                             flex items-center gap-2 text-gray-300 hover:text-white"
+                    className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200 flex items-center gap-2 text-gray-200 hover:text-white"
                   >
                     <ArrowLeft className="w-5 h-5" />
                     <span className="font-medium">Back</span>
                   </button>
                 </div>
-                
+
                 <div className="flex gap-3">
                   <a
                     href={selectedProject.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
-                             transition-all duration-200 flex items-center gap-2"
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center gap-2"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Live Demo
@@ -502,8 +439,7 @@ const Projects = () => {
                     href={selectedProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg 
-                             transition-all duration-200 flex items-center gap-2"
+                    className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-200 flex items-center gap-2"
                   >
                     <Github className="w-4 h-4" />
                     Code
@@ -512,24 +448,26 @@ const Projects = () => {
               </div>
 
               {/* Modal Content */}
-              <div className="overflow-y-auto h-[calc(100%-80px)]">
-                <div className="p-12 max-w-6xl mx-auto">
+              <div className="overflow-y-auto h-[calc(100%-72px)] sm:h-[calc(100%-80px)]">
+                <div className="p-6 sm:p-8 lg:p-12 max-w-6xl mx-auto">
                   {/* Project Image */}
-                  <div className="mb-10">
-                    <img
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      className="w-full h-96 object-cover rounded-xl"
-                    />
+                  <div className="mb-8 sm:mb-10">
+                    <div className="relative rounded-xl overflow-hidden aspect-[16/9]">
+                      <img
+                        src={selectedProject.image}
+                        alt={selectedProject.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
 
                   {/* Project Title */}
-                  <h2 className="text-5xl font-bold text-white mb-8">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 lg:mb-8">
                     {selectedProject.title}
                   </h2>
 
                   {/* Project Metadata */}
-                  <div className="flex flex-wrap gap-8 mb-10 text-base text-gray-400">
+                  <div className="flex flex-wrap gap-6 sm:gap-8 mb-8 lg:mb-10 text-sm sm:text-base text-gray-300">
                     <div className="flex items-center gap-3">
                       <Calendar className="w-5 h-5" />
                       <span>{selectedProject.date}</span>
@@ -545,11 +483,11 @@ const Projects = () => {
                   </div>
 
                   {/* Project Description */}
-                  <div className="mb-10">
-                    <h3 className="text-3xl font-semibold text-white mb-6">
+                  <div className="mb-8 lg:mb-10">
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-4 sm:mb-6">
                       About This Project
                     </h3>
-                    <div className="text-gray-300 leading-relaxed space-y-6 text-xl">
+                    <div className="text-gray-300 leading-relaxed space-y-4 sm:space-y-6 text-base sm:text-lg lg:text-xl">
                       {selectedProject.fullDescription.split('\n\n').map((paragraph, index) => (
                         <p key={index}>{paragraph}</p>
                       ))}
@@ -557,31 +495,30 @@ const Projects = () => {
                   </div>
 
                   {/* Features */}
-                  <div className="mb-10">
-                    <h3 className="text-3xl font-semibold text-white mb-6">
+                  <div className="mb-8 lg:mb-10">
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-4 sm:mb-6">
                       Key Features
                     </h3>
-                    <ul className="space-y-4">
+                    <ul className="space-y-3 sm:space-y-4">
                       {selectedProject.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-4">
-                          <span className="text-blue-500 text-2xl">•</span>
-                          <span className="text-gray-300 text-xl">{feature}</span>
+                        <li key={index} className="flex items-start gap-3 sm:gap-4">
+                          <span className="text-blue-500 text-xl sm:text-2xl">•</span>
+                          <span className="text-gray-300 text-base sm:text-lg lg:text-xl">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   {/* Technologies */}
-                  <div className="mb-8">
-                    <h3 className="text-3xl font-semibold text-white mb-6">
+                  <div className="mb-6 lg:mb-8">
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-4 sm:mb-6">
                       Technologies Used
                     </h3>
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-2.5 sm:gap-3.5">
                       {selectedProject.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-6 py-3 bg-gray-800 text-gray-300 rounded-full text-base 
-                                   border border-gray-600 hover:bg-gray-700 transition-colors"
+                          className="px-4 py-2 bg-white/5 text-gray-200 rounded-full text-sm sm:text-base border border-white/10 hover:bg-white/10 transition-colors"
                         >
                           {tech}
                         </span>

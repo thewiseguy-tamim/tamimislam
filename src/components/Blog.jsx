@@ -60,7 +60,7 @@ const Blog = () => {
   };
 
   return (
-    <section id="Blog" className="bg-transparent min-h-screen py-16 px-4">
+    <section id="Blog" className="bg-transparent min-h-screen py-16 px-4 mt-[-90px]">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl font-bold text-center mb-4 text-white">
           Blog & Resources

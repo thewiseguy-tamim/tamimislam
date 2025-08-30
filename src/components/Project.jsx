@@ -323,7 +323,7 @@ const Projects = () => {
           className="w-full md:w-1/2 text-white"
         >
           <div className="flex items-center gap-2 mb-4">
-            <a href="https://eventpro-4059.onrender.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://event-three-inky.vercel.app/" target="_blank" rel="noopener noreferrer">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-bold">Eventpro</span>
             </a>
           </div>
@@ -354,7 +354,7 @@ const Projects = () => {
 
           <div className="flex flex-wrap gap-4 mb-4">
             <a
-              href="https://eventpro-4059.onrender.com/"
+              href="https://event-three-inky.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="group px-6 py-2 rounded-md bg-white text-black border hover: transition-all duration-300 flex items-center gap-2"

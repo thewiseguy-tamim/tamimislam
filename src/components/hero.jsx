@@ -130,7 +130,7 @@ const Hero = () => {
                 className="px-6 py-3 bg-white text-black font-bold rounded-lg 
                          hover:bg-gray-200 transition-colors duration-300 flex items-center gap-2"
               >
-                Download Resume
+                Download CV
               </button>
               <button 
                 onClick={handleProjectsClick}

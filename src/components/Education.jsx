@@ -134,7 +134,7 @@ const Education = () => {
                       <div className="flex items-center space-x-2">
                         <span className="text-gray-300 text-lg">Current CGPA:</span>
                         <span className="bg-white text-black px-3 py-1 rounded-full text-base font-bold">
-                          3.72
+                          3.39
                         </span>
                       </div>
                     </div>

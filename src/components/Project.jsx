@@ -63,7 +63,7 @@ const Projects = () => {
       category: "Event Management System",
       status: "Live",
       technologies: ['Django', 'Tailwind CSS', 'MVT', 'Python'],
-      liveUrl: "https://eventpro-4059.onrender.com/",
+      liveUrl: "https://event-three-inky.vercel.app/",
       githubUrl: "https://github.com/thewiseguy-tamim/eventpro",
       features: [
         'Create and manage events with detailed scheduling and guest tracking',

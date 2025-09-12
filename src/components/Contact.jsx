@@ -124,7 +124,7 @@ const Contact = () => {
                 </h1>
                 <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed">
                   Please feel free to contact me and I<br />
-                  will get back to you as soon as we can.
+                  will get back to you as soon as I can.
                 </p>
               </div>
 

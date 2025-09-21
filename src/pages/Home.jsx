@@ -40,7 +40,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FIX: unique ID instead of a second "Projects" */}
       <section id="Education" className="min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <Education />
@@ -60,7 +59,6 @@ const Home = () => {
       </section>
 
       <section id="Contact" className="min-h-screen">
-        {/* Mobile: no negative margin. Desktop: keep the original pull-up. Also ensure it paints above. */}
         <div className="mt-0 lg:mt-[-200px] relative z-10">
           <Contact />
         </div>

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Linkedin, Instagram } from 'lucide-react';
 import ShinyText from '../../reactbits/ShinyText/ShinyText';
-
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = 'service_21eb93i';
 const EMAILJS_TEMPLATE_ID = 'template_t35ilql';

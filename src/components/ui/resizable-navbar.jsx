@@ -32,8 +32,8 @@ export const NavBody = ({ children, className, visible }) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(16px)" : "none", // Apply blur only when visible
-        backgroundColor: visible ? "rgba(0, 0, 0, 0.05)" : "transparent", // Very subtle transparent tint when visible
+          backdropFilter: visible ? "blur(16px)" : "none",
+          backgroundColor: visible ? "rgba(0, 0, 0, 0.05)" : "transparent",
         boxShadow: visible ? "0 4px 20px rgba(0, 0, 0, 0.1)" : "none",
       }}
       transition={{
@@ -41,8 +41,8 @@ export const NavBody = ({ children, className, visible }) => {
         ease: "easeInOut",
       }}
       className={cn(
-        "hidden lg:flex w-full max-w-6xl mx-auto items-center justify-between px-6 py-4 rounded-full mt-4",
-        "dark:border-neutral-800", // Removed dark background, as motion handles it now
+          "hidden lg:flex w-full max-w-6xl mx-auto items-center justify-between px-6 py-4 rounded-full mt-4",
+          "dark:border-neutral-800",
         className,
       )}
     >
@@ -90,7 +90,7 @@ export const MobileNav = ({ children, className, visible }) => {
         ease: "easeInOut",
       }}
       className={cn(
-        "lg:hidden w-full h-16 border-b border-gray-200/50 dark:border-gray-800/50", // Added fixed height
+          "lg:hidden w-full h-16 border-b border-gray-200/50 dark:border-gray-800/50",
         className,
       )}
     >
@@ -107,7 +107,6 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -116,7 +115,6 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }) => {
             onClick={onClose}
           />
 
-          {/* Menu */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -157,7 +155,6 @@ export const MobileNavToggle = ({ isOpen, onClick }) => {
 export const NavbarLogo = () => {
   return (
     <a href="#" className="flex items-center space-x-2">
-      {/* <img src={logo} alt="logo" className="h-8 w-8" /> */}
       <span className="font-bold text-lg text-gray-100 dark:text-gray-100 font-mono">Tamim </span>
     </a>
   )

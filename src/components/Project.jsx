@@ -17,7 +17,7 @@ const Projects = () => {
     petnest: {
       id: 3,
       title: "PetNest",
-      image: Project3, // Replace with your PetNest image import
+      image: Project3, 
       shortDescription: "A full-stack pet marketplace platform for browsing, posting, and adopting/buying pets with secure payments and in-app messaging.",
       fullDescription: "PetNest is a comprehensive web application designed to connect pet adopters, sellers, and animal lovers in one trusted platform. Users can browse pets with advanced filters, create and manage listings, communicate via a built-in messaging system, and complete secure online payments through SSLCommerz.\n\nThe platform includes user verification to ensure trust and safety, along with role-based dashboards for users, moderators, and admins to manage listings, verifications, and platform activity. PetNest delivers a responsive, mobile-friendly experience optimized for all devices.\n\nBuilt with a modern tech stack, PetNest offers a seamless, secure, and user-friendly interface for anyone looking to adopt or buy pets online.",
       date: "August 2025",
@@ -25,7 +25,7 @@ const Projects = () => {
       status: "Live",
       technologies: ['React', 'Tailwind CSS', 'Vite', 'Django REST Framework', 'PostgreSQL', 'JWT Authentication', 'Cloudinary', 'SSLCommerz'],
       liveUrl: "https://petnest-eta.vercel.app/",
-      githubUrl: "https://github.com/thewiseguy-tamim/petnest-frontend", // Or backend repo if needed
+      githubUrl: "https://github.com/thewiseguy-tamim/petnest", 
       features: [
         'Browse pets using advanced filters (type, breed, adoption/sale status)',
         'Create listings with image uploads and manage them via a personal dashboard',

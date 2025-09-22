@@ -1,3 +1,4 @@
+// src/pages/Home.jsx
 "use client"
 
 import { useEffect } from "react"
@@ -52,13 +53,15 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="Skills" className="min-h-screen">
+      {/* Removed min-h-screen to clear the empty space before Contact */}
+      <section id="Skills" className="">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <TechStack />
         </div>
       </section>
 
-      <section id="Contact" className="min-h-screen">
+      {/* Removed min-h-screen to eliminate extra height on mobile */}
+      <section id="Contact" className="">
         <div className="mt-0 lg:mt-[-200px] relative z-10">
           <Contact />
         </div>

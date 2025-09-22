@@ -100,31 +100,24 @@ const MainLayout = () => {
   }, [location.pathname])
 
   const scrollToSection = (sectionId) => {
-    if (location.pathname !== "/" && location.pathname !== "/home") {
-      navigate("/")
-      setTimeout(() => {
-        const element = document.getElementById(sectionId)
-        if (element) {
-          const elementPosition = element.offsetTop - 80
-          window.scrollTo({
-            top: elementPosition,
-            behavior: "smooth",
-          })
-          setActiveSection(sectionId)
-        }
-      }, 100)
-    } else {
+    const scrollWithOffset = () => {
       const element = document.getElementById(sectionId)
       if (element) {
-        const elementPosition = element.offsetTop - 80
-        window.scrollTo({
-          top: elementPosition,
-          behavior: "smooth",
-        })
-        setIsMobileMenuOpen(false)
+        const nav = document.getElementById("site-nav")
+        const offset = nav ? nav.offsetHeight : 80
+        const elementPosition = element.offsetTop - offset
+        window.scrollTo({ top: elementPosition, behavior: "smooth" })
         setActiveSection(sectionId)
-        window.history.replaceState(null, null, `#${sectionId}`)
       }
+    }
+
+    if (location.pathname !== "/" && location.pathname !== "/home") {
+      navigate("/")
+      setTimeout(scrollWithOffset, 100)
+    } else {
+      scrollWithOffset()
+      setIsMobileMenuOpen(false)
+      window.history.replaceState(null, null, `#${sectionId}`)
     }
   }
 
@@ -142,6 +135,7 @@ const MainLayout = () => {
         hoverFillColor="#222" 
       />
 
+      {/* Fixed header */}
       <Navbar className="fixed top-0 left-0 right-0 z-50">
         <NavBody>
           <NavbarLogo />
@@ -191,6 +185,7 @@ const MainLayout = () => {
         </MobileNav>
       </Navbar>
 
+      {/* Reserve space for the fixed header */}
       <div className="pt-16 md:pt-20 lg:pt-24 w-full max-w-full overflow-x-hidden">
         <Outlet />
         <Footer />

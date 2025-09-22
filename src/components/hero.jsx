@@ -19,26 +19,10 @@ const Hero = () => {
   `)}`;
 
   const socials = [
-    {
-      icon: <FaGithub size={28} />,
-      link: "https://github.com/thewiseguy-tamim",
-      label: "GitHub"
-    },
-    {
-      icon: <FaLinkedin size={28} />,
-      link: "https://www.linkedin.com/in/nottamimislam/",
-      label: "LinkedIn"
-    },
-    {
-      icon: <FaInstagram size={28} />,
-      link: "https://www.instagram.com/tamim_accidentally_/",
-      label: "Instagram"
-    },
-    {
-      icon: <FaFacebook size={28} />,
-      link: "https://www.facebook.com/tamim.akuma/",
-      label: "Facebook"
-    }
+    { icon: <FaGithub size={28} />, link: "https://github.com/thewiseguy-tamim", label: "GitHub" },
+    { icon: <FaLinkedin size={28} />, link: "https://www.linkedin.com/in/nottamimislam/", label: "LinkedIn" },
+    { icon: <FaInstagram size={28} />, link: "https://www.instagram.com/tamim_accidentally_/", label: "Instagram" },
+    { icon: <FaFacebook size={28} />, link: "https://www.facebook.com/tamim.akuma/", label: "Facebook" },
   ];
 
   const handleDownloadResume = () => {
@@ -55,46 +39,40 @@ const Hero = () => {
     if (projectsSection) {
       const offset = 80; // Account for fixed navbar
       const elementPosition = projectsSection.offsetTop - offset;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: elementPosition, behavior: "smooth" });
     }
   };
 
+  // Critical for mobile: overflow-hidden clips the card/glow so it can't overlap the Projects title.
+  // pb-16 adds breathing room before the next section.
   return (
-    <section className="relative min-h-screen flex items-center px-4 sm:px-8 lg:px-16 mt-[-190px]">
+    <section className="relative overflow-hidden min-h-screen flex items-center px-4 sm:px-8 lg:px-16 mt-0 lg:mt-[-190px] pb-16">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <div className="space-y-8">
-            {/* Greeting Badge */}
             <span className="px-4 py-2 bg-white/10 rounded-full text-sm font-medium text-white inline-block">
               Hello, I am
             </span>
 
-            {/* Name & Title */}
             <div className="space-y-3">
               <h1 className="text-5xl font-bold text-gray-100">
                 <ShinyText text="Tamim Islam" disabled={false} speed={3} className='custom-class' />
               </h1>
-              
               <h2 className="text-3xl font-bold text-gray-300">
                 <DecryptedText
-                    text="Full Stack Development Engineer"
-                    animateOn="view"
-                    revealDirection="center"
+                  text="Full Stack Development Engineer"
+                  animateOn="view"
+                  revealDirection="center"
                 />
               </h2>
             </div>
 
-            {/* Description */}
             <p className="text-gray-400 text-lg max-w-lg">
               Passionate about creating elegant solutions to complex problems. 
               Specializing in modern web technologies and cloud architecture.
             </p>
 
-            {/* Tech Stack */}
             <div className="flex gap-3 flex-wrap">
               {['React', 'Vite', 'Javascript', 'Django', 'SQL', 'Supabase'].map((tech) => (
                 <span
@@ -107,7 +85,6 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* Social Links */}
             <div className="flex gap-6">
               {socials.map((social) => (
                 <a
@@ -123,7 +100,6 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* Action Buttons */}
             <div className="flex gap-4">
               <button 
                 onClick={handleDownloadResume}
@@ -150,16 +126,16 @@ const Hero = () => {
             className="relative max-w-sm mx-auto lg:mr-0"
           >
             <ProfileCard 
-                name=""
-                title=""
-                handle="tamim_accidentally_"
-                status="Online"
-                contactText="Contact Me"
-                avatarUrl={profileImg}
-                showUserInfo={true}
-                enableTilt={true}
-                innerGradient="none"
-                iconUrl={codingPattern}
+              name=""
+              title=""
+              handle="tamim_accidentally_"
+              status="Online"
+              contactText="Contact Me"
+              avatarUrl={profileImg}
+              showUserInfo={true}
+              enableTilt={true}
+              innerGradient="none"
+              iconUrl={codingPattern}
             />
           </motion.div>
         </div>
@@ -168,14 +144,8 @@ const Hero = () => {
       {/* Animated Arrow */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
-        animate={{
-          y: [0, 10, 0],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
       >
         <FaChevronDown size={24} />
       </motion.div>

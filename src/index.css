@@ -1,3 +1,16 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+:root {
+  --nav-h: 64px;   /* mobile header height */
+}
+
+@media (min-width: 768px) {
+  :root { --nav-h: 80px; }  /* md */
+}
+@media (min-width: 1024px) {
+  :root { --nav-h: 96px; }  /* lg */
+}
+
+/* Make hash/scrollIntoView stop below the fixed header */
+html { scroll-padding-top: var(--nav-h); }
